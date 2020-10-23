@@ -1,0 +1,7 @@
+@import 'codemirror/lib/codemirror.css';
+@import 'codemirror/theme/material.css';
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}

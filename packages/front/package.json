@@ -5,12 +5,13 @@
   "dependencies": {
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-markdown": "^5.0.1",
     "react-scripts": "3.4.3"
   },
   "scripts": {
     "lint": "npx eslint --fix src/**/*.js*",
     "precommit": "lint-staged && pnpm test",
-    "start": "react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

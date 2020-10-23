@@ -1,15 +1,19 @@
 // src/app.js
 import express from 'express';
-import bodyParser from 'body-parser';
 import path from 'path';
+import cors from 'cors';
+import api from './routes';
 
 // Check whether we are in production env
 const isProd = process.env.NODE_ENV === 'production';
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors({
+  exposedHeaders: ['Content-Range'],
+}));
 
-app.get('/api/foo', (req, res) => res.json({ foo: 'bar' }));
+app.use('/api', api);
 
 if (isProd) {
   // Compute the build path and index.html path

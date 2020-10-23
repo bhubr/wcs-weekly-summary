@@ -1,22 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import WeekSummary from './components/week-summary';
 
 function App() {
-  const [foo, setFoo] = useState('N/A');
+  const [summaries, setSummaries] = useState([]);
+  const [error, setError] = useState(null);
   useEffect(
     () => {
-      fetch('/api/foo')
+      fetch('/api/week-summaries')
         .then((res) => res.json())
-        .then((data) => setFoo(data.foo))
-        .catch((err) => setFoo(err.message));
+        .then(setSummaries)
+        .catch(setError);
     },
+    [],
   );
   return (
     <div>
       <h1>Hello World</h1>
-      <p>
-Server responded with foo:
-        {foo}
-      </p>
+      {
+        error && (
+          <p style={{ color: 'red' }}>{error.message}</p>
+        )
+      }
+      {
+        summaries.map((week) => (
+          <WeekSummary
+            {...week}
+          />
+        ))
+      }
     </div>
   );
 }
